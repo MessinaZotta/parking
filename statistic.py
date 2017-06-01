@@ -3,8 +3,8 @@
 import argparse
 parser = argparse.ArgumentParser()
 
-from datetime import date
-today = date.today()
+import datetime
+today = datetime.date.today()
 
 
 # Opzioni programma (--car, --sensor, --date)
@@ -14,9 +14,10 @@ parser.add_argument("-d", "--date", help="Specify the date when you want to see 
 parser.add_argument("-p", "--period", help="Specify the period you want to see arrival/exit of cars", type=str, default=None, nargs='*', required=False)
 
 
-def checkTime(carTime, time1, time2)):
+def checkTime(carTime, time1, time2):
     time1 = datetime.datetime.strptime(time1, '%H:%M')
     time2 = datetime.datetime.strptime(time2, '%H:%M')
+    carTime = datetime.datetime.strptime(carTime, '%H:%M:%S')
 
     if (time1 > time2):
         temp = time1
@@ -43,14 +44,14 @@ def main(args):
             if (car in lcar) and (sensor in lsensor) and (date in ldate):
                 if (args.period != None):
                     time1 = args.period[0]
-                    time2 = args.period[1] if args.period[1] != else datetime.datetime.strftime(datetime.datetime.today(), "%H:%M")
-                    if (checkTime(time1, time2)):
-                        print ("La macchina " + lcar + " è " +
+                    time2 = args.period[1] if args.period[1] != None else datetime.datetime.strftime(datetime.datetime.today(), "%H:%M")
+                    if (checkTime(ltime, time1, time2)):
+                        print ("La macchina " + lcar + " e " +
                             ("entrata nel" if levent == "1" else "uscita dal")
                             + " parcheggio " + lsensor + " alle " + ltime + " il " + ldate)
                         nris += 1
                 else:
-                    print ("La macchina " + lcar + " è " +
+                    print ("La macchina " + lcar + " e " +
                         ("entrata nel" if levent == "1" else "uscita dal")
                         + " parcheggio " + lsensor + " alle " + ltime + " il " + ldate)
                     nris += 1
