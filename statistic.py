@@ -44,7 +44,7 @@ def main(args):
             if (car in lcar) and (sensor in lsensor) and (date in ldate):
                 if (args.period != None):
                     time1 = args.period[0]
-                    time2 = args.period[1] if args.period[1] != None else datetime.datetime.strftime(datetime.datetime.today(), "%H:%M")
+                    time2 = args.period[1] if len(args.period) == 2 else datetime.datetime.strftime(datetime.datetime.today(), "%H:%M")
                     if (checkTime(ltime, time1, time2)):
                         print ("La macchina " + lcar + " e " +
                             ("entrata nel" if levent == "1" else "uscita dal")
