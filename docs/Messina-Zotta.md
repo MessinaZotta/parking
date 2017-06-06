@@ -20,4 +20,3 @@ https://github.com/MessinaZotta/parking
 $ python statistic.py --car 2 --sensor 4 --date 2017/05/28 --period 11:58 15:46
 
 $ python statistic.py --car 2 --period 08:53
-s
